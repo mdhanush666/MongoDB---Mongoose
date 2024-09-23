@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rev CRUD - MongoDB</title>
+</head>
+<body>
+  
+    <h1 style="text-align: center;">CRUD Operations - MongoDB</h1>
+
+    <br><br>
+
+    {{acknowledgement}}
+
+    <br><br>
+
+    {{#if update_id}}
+
+        <form method="post" action="/update-book/{{update_id}}">
+        
+            <h3>Update</h3>
+
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value="{{update_book.title}}">
+
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" value="{{update_book.author}}">
+
+            <input type="submit" value="Update">
+        </form>
+    {{else}}
+        <form method="post" action="/add-book">
+            
+            <h3>Create</h3>
+
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title">
+
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author">
+
+            <input type="submit" value="Add">
+        </form>
+    {{/if}}
+
+    <br><br>
+
+    <table border="1" cellspacing="0" cellpadding="5" align="center">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each book}}
+                <tr>
+                    <td>{{this.title}}</td>
+                    <td>{{this.author}}</td>
+                    <td>
+                        <a href="/?update_id={{this._id}}">Update</a>
+                        |
+                        <a href="/?delete_book_id={{this._id}}" onclick="return confirm('Are You Sure to Delete?')">Delete</a>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <a style="text-decoration: none;" href="/">Home</a>
+
+</body>
+</html>

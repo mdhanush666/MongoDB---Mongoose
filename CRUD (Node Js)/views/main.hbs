@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MongoDB CRUD</title>
+</head>
+<body>
+
+  <h1>MongoDB CRUD Operations</h1>
+  {{message}}
+
+<br>
+
+  {{#if update_id}}
+    <h3>Update</h3>
+
+    <form method="post" action="/update-book/{{update_id}}">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" value="{{update_book.title}}">
+
+      <label for="author">Author</label>
+      <input type="text" name="author" id="author" value="{{update_book.author}}">
+
+      <input type="submit" value="Update">
+    </form>
+  {{else}}
+    <h3>Create</h3>
+
+    <form method="post" action="/add-book">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title">
+
+      <label for="author">Author</label>
+      <input type="text" name="author" id="author">
+
+      <input type="submit" value="Add">
+    </form>
+
+  {{/if}}
+
+<br>
+
+<table border="1" cellspacing="0" cellpadding="5">
+
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each book}}
+    <tr>
+      <td>{{this.title}}</td>
+      <td>{{this.author}}</td>
+      <td>
+        <a href="/?update_id={{this._id}}">Update</a>
+        <a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure to Delete?')">Delete</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+
+</table>
+  
+</body>
+</html>

@@ -1,0 +1,43 @@
+db = shop;
+
+  M - M :
+   db.customer.aggregate({ $lookup: { 
+      from: "orders", localField: "_id", foreignField: "customer_id", as: "customer_Order" 
+    } })
+
+    66e422f5ee29c0c117c73c03
+    66e422f5ee29c0c117c73c04
+    66e422f5ee29c0c117c73c05
+
+cus_ID : 
+    66e3f3e6279aae34d5c73bf8
+    66e3f3e6279aae34d5c73bfa
+    66e3f3e6279aae34d5c73bfa
+
+
+db.orders.insertOne(
+  {
+    amount:1000, customer_id:ObjectId("66e3f3e6279aae34d5c73bf8"), product_ids:[
+      ObjectId("66e422f5ee29c0c117c73c03"),
+      ObjectId("66e422f5ee29c0c117c73c04")
+    ]
+  }
+)
+
+db.orders.insertOne(
+  {
+    amount:500, customer_id:ObjectId("66e3f3e6279aae34d5c73bfa"), product_ids:[
+      ObjectId("66e422f5ee29c0c117c73c03")
+    ]
+  }
+)
+
+db.orders.insertOne(
+  {
+    amount:1500, customer_id:ObjectId("66e3f3e6279aae34d5c73bfa"), product_ids:[
+      ObjectId("66e422f5ee29c0c117c73c03"),
+      ObjectId("66e422f5ee29c0c117c73c04"),
+      ObjectId("66e422f5ee29c0c117c73c05")
+    ]
+  }
+)

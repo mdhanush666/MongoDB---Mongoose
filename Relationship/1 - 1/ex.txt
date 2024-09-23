@@ -1,0 +1,9 @@
+db = shop;
+
+  1 - 1 :
+    db.customer.aggregate([{$lookup: 
+      { 
+        from: "customer_phone", localField: "_id",
+        foreignField: "customer_id", as: "customer_phNo" 
+      }
+    }])
