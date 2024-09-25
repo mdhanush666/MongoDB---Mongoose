@@ -10,7 +10,8 @@ const ObjectID    = dbO.ObjectID;
 
 // hbs gura name la engine na register seiyenum
 app.engine('hbs', exhbs.engine({
-  layoutsDir:path.join(__dirname,'views'), defaultLayout:'main', 
+  layoutsDir:path.join(__dirname,'views'), 
+  defaultLayout:'main', 
   extname:'hbs'
 }))
 
